@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Melani Grubić Mikulić – Content Writing Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,600;0,900;1,300;1,600&family=Epilogue:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #F7F4EF;
+      --ink: #111010;
+      --accent: #2A5C45;
+      --accent-light: #E8F0EC;
+      --muted: #6B6560;
+      --sand: #E2DAD0;
+      --white: #FDFCFA;
+      --tag-bg: #EEE9E2;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Epilogue', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(247, 244, 239, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--sand);
+    }
+
+    .nav-name {
+      font-family: 'Fraunces', serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 120px 48px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(42,92,69,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s forwards;
+    }
+
+    .hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(52px, 9vw, 120px);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -2px;
+      color: var(--ink);
+      max-width: 900px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.4s forwards;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      margin-top: 40px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.6s forwards;
+    }
+
+    .hero-desc {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 480px;
+      line-height: 1.75;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+    }
+
+    .stat {
+      text-align: right;
+    }
+
+    .stat-num {
+      font-family: 'Fraunces', serif;
+      font-size: 36px;
+      font-weight: 600;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-top: 4px;
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      padding: 100px 48px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+      margin-bottom: 60px;
+    }
+
+    .section-num {
+      font-family: 'Fraunces', serif;
+      font-size: 13px;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .section-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(28px, 4vw, 46px);
+      font-weight: 600;
+      line-height: 1.1;
+      color: var(--ink);
+    }
+
+    /* ── WORK GRID ── */
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2px;
+      background: var(--sand);
+    }
+
+    .work-card {
+      background: var(--white);
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: background 0.25s;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .work-card:hover { background: var(--accent-light); }
+
+    .work-card-type {
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .work-card h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.25;
+    }
+
+    .work-card p {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .work-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 8px;
+    }
+
+    .work-card-company {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .arrow {
+      width: 32px; height: 32px;
+      border: 1px solid var(--sand);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: var(--accent);
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .work-card:hover .arrow {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+
+    .result-tag {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      font-size: 10px;
+      padding: 3px 10px;
+      border-radius: 2px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    /* ── FEATURED ── */
+    .featured-card {
+      background: var(--ink);
+      color: var(--white);
+      padding: 60px;
+      margin-bottom: 2px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      text-decoration: none;
+      transition: background 0.25s;
+    }
+
+    .featured-card:hover { background: var(--accent); }
+
+    .featured-label {
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 20px;
+    }
+
+    .featured-card h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 32px;
+      font-weight: 600;
+      line-height: 1.15;
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    .featured-card p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.7;
+    }
+
+    .featured-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .featured-stat {
+      border-left: 2px solid rgba(255,255,255,0.2);
+      padding-left: 20px;
+    }
+
+    .featured-stat-num {
+      font-family: 'Fraunces', serif;
+      font-size: 42px;
+      font-weight: 600;
+      color: white;
+      line-height: 1;
+    }
+
+    .featured-stat-label {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      margin-top: 6px;
+    }
+
+    /* ── SKILLS STRIP ── */
+    .skills-strip {
+      background: var(--accent);
+      padding: 60px 48px;
+    }
+
+    .skills-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+    }
+
+    .skill-col h4 {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 16px;
+    }
+
+    .skill-col p {
+      font-size: 14px;
+      color: white;
+      line-height: 1.7;
+    }
+
+    /* ── TAGS ── */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .tag {
+      background: var(--tag-bg);
+      color: var(--muted);
+      font-size: 11px;
+      padding: 4px 12px;
+      border-radius: 2px;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── CONTACT ── */
+    .contact-section {
+      padding: 100px 48px;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .contact-section h2 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 600;
+      line-height: 1.05;
+      color: var(--ink);
+    }
+
+    .contact-section h2 em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--accent);
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      text-decoration: none;
+      color: var(--ink);
+      font-size: 15px;
+      padding: 20px 24px;
+      background: var(--white);
+      border: 1px solid var(--sand);
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .contact-link:hover {
+      border-color: var(--accent);
+      background: var(--accent-light);
+    }
+
+    .contact-link-label {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--sand);
+      padding: 32px 48px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: var(--sand);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      .hero { padding: 100px 24px 60px; }
+      .hero-sub { flex-direction: column; align-items: flex-start; }
+      .hero-stats { flex-direction: row; }
+      .stat { text-align: left; }
+      .section { padding: 60px 24px; }
+      .featured-card { grid-template-columns: 1fr; padding: 40px 24px; }
+      .contact-section { grid-template-columns: 1fr; padding: 60px 24px; }
+      .skills-strip { padding: 48px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-name" href="#">Melani Grubić Mikulić</a>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#product">Product Copy</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-eyebrow">Content Writing Portfolio</p>
+    <h1>Writing that<br><em>works</em> for<br>B2B tech.</h1>
+    <div class="hero-sub">
+      <p class="hero-desc">
+        Nearly 10 years creating content across B2B tech and B2C fintech — blogs, guides, product copy, educational resources, and multilingual campaigns. Based in Split, Croatia.
+      </p>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">1,000%+</div>
+          <div class="stat-label">Blog traffic growth</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">14</div>
+          <div class="stat-label">Languages managed</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">~200</div>
+          <div class="stat-label">Articles authored</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED: Use Cases -->
+  <div style="background: var(--sand); padding: 2px 0;">
+    <a class="featured-card" href="https://parklio.com/en/use-cases/" target="_blank" id="work">
+      <div>
+        <div class="featured-label">Featured Project · Parklio</div>
+        <h3>Inventing a Use Case Content Framework from Scratch</h3>
+        <p>Conceived, structured, and wrote an entirely new section of the Parklio website — the Use Cases hub. Identified the most common pain points across industries (EV charging, residential, commercial, hospitality) and designed a problem/solution content structure that didn't previously exist on the site. Each use case was researched, written, and optimised for search.</p>
+      </div>
+      <div class="featured-meta">
+        <div class="featured-stat">
+          <div class="featured-stat-num">0 → live</div>
+          <div class="featured-stat-label">Built from scratch, full ownership</div>
+        </div>
+        <div class="featured-stat">
+          <div class="featured-stat-num">B2B</div>
+          <div class="featured-stat-label">Technical product, non-technical audience</div>
+        </div>
+        <div class="featured-stat">
+          <div class="featured-stat-num">SEO</div>
+          <div class="featured-stat-label">Problem/solution structure, keyword-led</div>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <!-- LONG-FORM CONTENT -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Long-Form B2B Tech Content</h2>
+    </div>
+
+    <div class="work-grid">
+
+      <a class="work-card" href="https://parklio.com/en/blog/top-9-best-automatic-parking-barriers" target="_blank">
+        <div class="work-card-type">Blog · Comparison</div>
+        <h3>Top 9 Best Automatic Parking Barriers</h3>
+        <p>The most visited and widely read blog on the Parklio site in 2023. Manually researched competitors' products, read technical manuals and specifications, and wrote a detailed comparison that was later boosted with paid ads due to its organic performance.</p>
+        <span class="result-tag">Most read · 2023 · Lead gen</span>
+        <div class="work-card-footer">
+          <span class="work-card-company">Parklio</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+
+      <a class="work-card" href="https://parklio.com/en/blog/top-8-automatic-chain-barriers" target="_blank">
+        <div class="work-card-type">Blog · Comparison</div>
+        <h3>Top 8 Automatic Chain Barriers</h3>
+        <p>Fully research-led comparison article — manually sourced competitor products, read product manuals and technical specs, and synthesised findings into a structured, readable guide for buyers at various stages of the purchase journey.</p>
+        <div class="work-card-footer">
+          <span class="work-card-company">Parklio</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+
+      <a class="work-card" href="https://parklio.com/en/blog/top-10-benefits-of-smart-parking-protection-and-why-you-should-use-it" target="_blank">
+        <div class="work-card-type">Blog · Educational</div>
+        <h3>Top 10 Benefits of Smart Parking Protection</h3>
+        <p>Audience-led educational content making a business case for smart parking technology. Written to convert awareness-stage visitors into leads by addressing objections and framing product benefits in terms of real operational outcomes.</p>
+        <div class="work-card-footer">
+          <span class="work-card-company">Parklio</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+
+      <a class="work-card" href="https://parklio.com/en/blog/top-10-cities-in-europe-with-the-most-ev-charging-stations" target="_blank">
+        <div class="work-card-type">Blog · Data & Research</div>
+        <h3>Top 10 European Cities with the Most EV Charging Stations</h3>
+        <p>Data-driven content piece linking EV infrastructure trends to parking management needs — positioning Parklio within a broader industry conversation while serving readers with genuinely useful, researched information.</p>
+        <div class="work-card-footer">
+          <span class="work-card-company">Parklio</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- RESEARCH-LED -->
+  <div class="section" id="research">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Research-Led &amp; Expert Content</h2>
+    </div>
+
+    <div class="work-grid">
+
+      <a class="work-card" href="https://www.britishparking-media.co.uk/blogs/guest-post-how-to-solve-hogging-and-iceing-issues-at-ev-charging-stations-in-the-uk" target="_blank">
+        <div class="work-card-type">Guest Post · Industry Publication</div>
+        <h3>Solving ICEing and Hogging at EV Charging Stations — British Parking Association</h3>
+        <p>Research-led guest article for the British Parking Association's industry media. Required deep understanding of UK EV infrastructure challenges, relevant legislation, and buyer pain points — written to establish Parklio's authority in a specialist, expert audience context.</p>
+        <span class="result-tag">Industry authority · Expert audience</span>
+        <div class="work-card-footer">
+          <span class="work-card-company">Parklio × British Parking Association</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+
+      <a class="work-card" href="https://parklio.com/en/use-cases/ev-charging-station-parking-management-solutions-and-systems" target="_blank">
+        <div class="work-card-type">Use Case · Problem/Solution</div>
+        <h3>EV Charging Station Parking Management</h3>
+        <p>Example of the use case framework I designed — structured around a specific industry's real problems, written to guide buyers from problem recognition to Parklio's solution. Each use case required research into the industry before writing a single word.</p>
+        <div class="work-card-footer">
+          <span class="work-card-company">Parklio</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+
+      <a class="work-card" href="https://www.bitstore.net/en/blog/how-to-verify-personal-account-on-bitcoin-store/" target="_blank">
+        <div class="work-card-type">Guide · Step-by-Step</div>
+        <h3>How to Verify Your Account on Bitcoin Store</h3>
+        <p>Detailed step-by-step guide with screenshots addressing a critical user drop-off point in the onboarding funnel. Written to reduce support tickets and guide users who were overwhelmed by the verification process — combining product knowledge with user empathy.</p>
+        <div class="work-card-footer">
+          <span class="work-card-company">Bitcoin Store</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+
+      <a class="work-card" href="https://www.bitstore.net/en/blog/authors/melani/" target="_blank">
+        <div class="work-card-type">Blog Archive · Fintech</div>
+        <h3>Bitcoin Store Blog — Full Author Archive</h3>
+        <p>All blog posts originally written in English — covering crypto, blockchain, fintech regulation, product education, and market analysis. Written for audiences ranging from crypto newcomers to experienced investors.</p>
+        <div class="work-card-footer">
+          <span class="work-card-company">Bitcoin Store</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PRODUCT COPY -->
+  <div class="section" id="product">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Product Copy &amp; Landing Pages</h2>
+    </div>
+
+    <div class="work-grid">
+
+      <a class="work-card" href="https://www.bitstore.net/en/bitstore-card/" target="_blank">
+        <div class="work-card-type">Landing Page · Product Launch</div>
+        <h3>Bitstore Card — Product Landing Page</h3>
+        <p>Full landing page for a new product launch — including page structure, copy, FAQ section, and all CTA button copy. Written to introduce a new product to existing users while converting new visitors at every stage of the funnel.</p>
+        <span class="result-tag">Product launch · Full ownership</span>
+        <div class="work-card-footer">
+          <span class="work-card-company">Bitcoin Store</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+
+      <a class="work-card" href="https://www.bitstore.net/en/apple-pay/" target="_blank">
+        <div class="work-card-type">Landing Page · Feature · 14 Languages</div>
+        <h3>Apple Pay Feature Page</h3>
+        <p>Conceptualised, structured, and wrote all copy for the Apple Pay feature landing page — then coordinated its localisation across 14 languages using AI-assisted translation tools, ensuring brand voice and technical accuracy across every market version.</p>
+        <span class="result-tag">14 languages · Multilingual</span>
+        <div class="work-card-footer">
+          <span class="work-card-company">Bitcoin Store</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+
+      <a class="work-card" href="https://parklio.com/en/parking-solutions/anpr" target="_blank">
+        <div class="work-card-type">Product Page · Technical</div>
+        <h3>ANPR Parking Solution Page</h3>
+        <p>Rewrote and restructured a technical product page for Parklio's ANPR (Automatic Number Plate Recognition) solution — translating complex technology into clear value propositions for non-technical buyers, while maintaining accuracy for technical evaluators.</p>
+        <div class="work-card-footer">
+          <span class="work-card-company">Parklio</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+
+      <a class="work-card" href="https://parklio.com/en/parking-software/connect-app" target="_blank">
+        <div class="work-card-type">Product Page · SaaS</div>
+        <h3>Connect App — Software Product Page</h3>
+        <p>Rewrote product page for Parklio's Connect App, a parking management SaaS product. Structured to guide visitors from feature discovery to conversion, with clear language for both technical users and business decision-makers.</p>
+        <div class="work-card-footer">
+          <span class="work-card-company">Parklio</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- EDUCATION CENTER + VIDEO -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Content Architecture &amp; Video</h2>
+    </div>
+
+    <div class="work-grid">
+
+      <a class="work-card" href="https://www.bitstore.net/en/blog/" target="_blank">
+        <div class="work-card-type">Content Architecture · Education Center</div>
+        <h3>Bitcoin Store Education Center</h3>
+        <p>Redesigned and restructured the entire Bitcoin Store blog into a categorised Education Center with tags and a clear user journey — a structure that didn't exist before. Also managed localisation of the full architecture across all supported languages.</p>
+        <span class="result-tag">Full restructure · Multilingual</span>
+        <div class="work-card-footer">
+          <span class="work-card-company">Bitcoin Store</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+
+      <a class="work-card" href="https://www.youtube.com/watch?v=3LOo9pbkgcg&t=93s" target="_blank">
+        <div class="work-card-type">Video · Tutorial · Technical</div>
+        <h3>Automatic Gate Barrier Installation Tutorial</h3>
+        <p>Wrote the full video brief, developed the step-by-step instruction sequence, provided guidance to the filming and editing colleague, and handled upload, description, and distribution. A clear example of turning technical product knowledge into accessible instructional content.</p>
+        <div class="work-card-footer">
+          <span class="work-card-company">Parklio</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+
+      <a class="work-card" href="https://www.youtube.com/watch?v=fPibMqZ4uEQ" target="_blank">
+        <div class="work-card-type">Video · Product · End-to-End</div>
+        <h3>Product Video — Full Production</h3>
+        <p>One of several product videos from 2022–2023 handled end-to-end — scripting, filming direction, editing, upload, and distribution. Full ownership from brief to live.</p>
+        <div class="work-card-footer">
+          <span class="work-card-company">Parklio</span>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- SKILLS STRIP -->
+  <div class="skills-strip">
+    <div class="skills-inner">
+      <div class="skill-col">
+        <h4>Content Types</h4>
+        <p>Blog posts · Long-form guides · Product pages · Landing pages · Educational resources · Use cases · Video briefs · Newsletters · Guest articles · Step-by-step tutorials</p>
+      </div>
+      <div class="skill-col">
+        <h4>Industries</h4>
+        <p>B2B Hardware & Software · B2C Fintech & Crypto · Travel Tech · Parking & EV Infrastructure · SaaS</p>
+      </div>
+      <div class="skill-col">
+        <h4>Approach</h4>
+        <p>Research-first · SME interviews · AI-assisted workflows · SEO-led strategy · Full ownership from brief to publication</p>
+      </div>
+      <div class="skill-col">
+        <h4>Languages</h4>
+        <p>Croatian (Native) · English (C1) · Italian (C1) · Managed content in 14 languages</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="contact-section" id="contact">
+    <h2>Let's work<br><em>together.</em></h2>
+    <div class="contact-links">
+      <a class="contact-link" href="mailto:melanigrubic94@gmail.com">
+        <div>
+          <span class="contact-link-label">Email</span>
+          melanigrubic94@gmail.com
+        </div>
+      </a>
+      <a class="contact-link" href="https://linkedin.com/in/melani-grubic-mikulic/" target="_blank">
+        <div>
+          <span class="contact-link-label">LinkedIn</span>
+          linkedin.com/in/melani-grubic-mikulic
+        </div>
+      </a>
+      <a class="contact-link" href="tel:+38595562456">
+        <div>
+          <span class="contact-link-label">Phone</span>
+          +385 95 562 4565
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    Melani Grubić Mikulić · Content Writer · Split, Croatia · 2026
+  </footer>
+
+</body>
+</html>
